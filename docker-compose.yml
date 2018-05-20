@@ -1,0 +1,29 @@
+postgre:
+  image: postgres
+  restart: always
+  expose:
+    - 5432
+  environment:
+    - POSTGRES_PASSWORD=5uper7assw0rd3fH
+    - POSTGRES_USER=5u73rUs3r
+    - POSTGRES_DB=movies
+
+movies:
+  image: python:3
+  restart: always
+  volumes:
+    - ./movies:/home/movies/code
+    - ./docker/entrypoint.movies-dev.sh:/home/movies/entrypoint.sh
+    - ./docker/infrastructure.json:/home/movies/.config/infrastructure.json
+
+  links:
+    - postgre
+  environment:
+    - DJANGODBCONFIG=/home/movies/.config/infrastructure.json
+
+  entrypoint:
+    - bash
+    - /home/movies/entrypoint.sh
+
+  ports:
+    - "0.0.0.0:8000:8000"

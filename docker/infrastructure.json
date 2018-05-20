@@ -1,0 +1,10 @@
+{
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "movies",
+        "USER": "5u73rUs3r",
+        "PASSWORD": "5uper7assw0rd3fH",
+        "HOST": "postgre",
+        "PORT": 5432
+    }
+}
